@@ -1,0 +1,140 @@
+{
+  "libros": [
+    {
+      "id": "LIB001",
+      "isbn": "9788420412146",
+      "titulo": "Don Quijote de la Mancha",
+      "autor": "Miguel de Cervantes",
+      "categoria": "Clásicos",
+      "anio": 1605,
+      "ejemplares": 3,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB002",
+      "isbn": "9780307474728",
+      "titulo": "Cien años de soledad",
+      "autor": "Gabriel García Márquez",
+      "categoria": "Novela",
+      "anio": 1967,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB003",
+      "isbn": "9780307389732",
+      "titulo": "El amor en los tiempos del cólera",
+      "autor": "Gabriel García Márquez",
+      "categoria": "Novela",
+      "anio": 1985,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB004",
+      "isbn": "9780451524935",
+      "titulo": "1984",
+      "autor": "George Orwell",
+      "categoria": "Ciencia ficción",
+      "anio": 1949,
+      "ejemplares": 1,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB005",
+      "isbn": "9780451526342",
+      "titulo": "Rebelión en la granja",
+      "autor": "George Orwell",
+      "categoria": "Clásicos",
+      "anio": 1945,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB006",
+      "isbn": "9780156012195",
+      "titulo": "El principito",
+      "autor": "Antoine de Saint-Exupéry",
+      "categoria": "Infantil",
+      "anio": 1943,
+      "ejemplares": 4,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB007",
+      "isbn": "9781400034710",
+      "titulo": "Crónica de una muerte anunciada",
+      "autor": "Gabriel García Márquez",
+      "categoria": "Novela",
+      "anio": 1981,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB008",
+      "isbn": "9781451673319",
+      "titulo": "Fahrenheit 451",
+      "autor": "Ray Bradbury",
+      "categoria": "Ciencia ficción",
+      "anio": 1953,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB009",
+      "isbn": "9780553213102",
+      "titulo": "Orgullo y prejuicio",
+      "autor": "Jane Austen",
+      "categoria": "Clásicos",
+      "anio": 1813,
+      "ejemplares": 2,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    },
+    {
+      "id": "LIB010",
+      "isbn": "9780553213690",
+      "titulo": "La metamorfosis",
+      "autor": "Franz Kafka",
+      "categoria": "Clásicos",
+      "anio": 1915,
+      "ejemplares": 1,
+      "descripcion": "Ejemplar de demostración para el sistema académico de biblioteca."
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "USU001",
+      "nombre": "Ana López",
+      "correo": "ana@ejemplo.com"
+    },
+    {
+      "id": "USU002",
+      "nombre": "Carlos Pérez",
+      "correo": "carlos@ejemplo.com"
+    },
+    {
+      "id": "USU003",
+      "nombre": "Lucía Martínez",
+      "correo": "lucia@ejemplo.com"
+    }
+  ],
+  "prestamos": [
+    {
+      "id": "PRE001",
+      "libro_id": "LIB004",
+      "usuario_id": "USU001",
+      "prestado_en": "2026-10-27",
+      "vence_en": "2026-11-10",
+      "devuelto_en": null
+    }
+  ],
+  "reservas": [
+    {
+      "id": "RES001",
+      "libro_id": "LIB004",
+      "usuario_id": "USU002",
+      "creada_en": "2026-11-14T05:52:21",
+      "estado": "pendiente"
+    }
+  ]
+}
