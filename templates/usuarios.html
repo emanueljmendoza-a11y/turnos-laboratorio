@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="encabezado"><div><span class="sobretitulo">LECTORES</span><h1>Usuarios registrados</h1><p>Consulta lectores y sus préstamos activos.</p></div><a class="boton primario" href="{{ url_for('usuario_nuevo') }}">＋ Registrar usuario</a></div>
+<section class="panel"><div class="panel-cabeza"><h2>{{ usuarios|length }} lectores</h2></div><div class="tabla-scroll"><table><thead><tr><th>Nombre</th><th>Correo electrónico</th><th>Préstamos activos</th><th>Identificador</th><th>Acción</th></tr></thead><tbody>{% for u in usuarios %}<tr><td><strong>{{ u.nombre }}</strong></td><td>{{ u.correo }}</td><td><span class="estado {{ 'exito' if u.activos < 3 else 'alerta' }}">{{ u.activos }} / 3</span></td><td class="mono">{{ u.id }}</td><td><a class="enlace" href="{{ url_for('usuario_editar', usuario_id=u.id) }}">Editar →</a></td></tr>{% else %}<tr><td colspan="5"><div class="vacio">No hay usuarios registrados.</div></td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}

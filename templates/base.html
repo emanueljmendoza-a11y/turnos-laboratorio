@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sistema de gestión de biblioteca con Python, Flask y estructuras de datos">
+  <title>{{ titulo }} · BiblioEstructuras</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="marca" href="{{ url_for('inicio') }}"><span class="marca-icono">▤</span><span>Biblio<span class="marca-acento">Estructuras</span><small>Administración académica</small></span></a>
+      <p class="menu-etiqueta">PRINCIPAL</p>
+      <nav aria-label="Navegación principal">
+        <a class="navitem {{ 'activo' if request.endpoint == 'inicio' else '' }}" href="{{ url_for('inicio') }}"><span>▦</span> Panel general</a>
+        <a class="navitem {{ 'activo' if request.endpoint in ['libros', 'libro_detalle', 'libro_nuevo', 'libro_editar'] else '' }}" href="{{ url_for('libros') }}"><span>▤</span> Catálogo de libros</a>
+        <a class="navitem {{ 'activo' if request.endpoint in ['usuarios', 'usuario_nuevo', 'usuario_editar'] else '' }}" href="{{ url_for('usuarios') }}"><span>♙</span> Usuarios</a>
+        <a class="navitem {{ 'activo' if request.endpoint in ['prestamos', 'prestamo_nuevo'] else '' }}" href="{{ url_for('prestamos') }}"><span>↗</span> Préstamos</a>
+        <a class="navitem {{ 'activo' if request.endpoint in ['reservas', 'reserva_nueva'] else '' }}" href="{{ url_for('reservas') }}"><span>◷</span> Reservas</a>
+      </nav>
+      <p class="menu-etiqueta">PROYECTO FINAL</p>
+      <nav><a class="navitem {{ 'activo' if request.endpoint == 'algoritmos' else '' }}" href="{{ url_for('algoritmos') }}"><span>⌘</span> Estructuras y Big O</a><a class="navitem" href="{{ url_for('exportar_datos') }}"><span>↓</span> Descargar respaldo JSON</a></nav>
+      <div class="sidebar-pie"><span class="indicador"></span> Servidor Python activo <small>Datos persistidos en JSON</small></div>
+    </aside>
+    <div class="principal">
+      <header class="barra-superior"><span>Proyecto final / Programación estructurada</span><span class="chip">Python + Flask + JSON</span></header>
+      <main class="contenido">
+        {% with mensajes = get_flashed_messages(with_categories=True) %}
+          {% for categoria, mensaje in mensajes %}<div class="aviso {{ categoria }}" role="alert">{{ mensaje }}</div>{% endfor %}
+        {% endwith %}
+        {% block contenido %}{% endblock %}
+      </main>
+      <footer class="pie">BiblioEstructuras · Proyecto educativo · Procesamiento en Python</footer>
+    </div>
+  </div>
+</body>
+</html>

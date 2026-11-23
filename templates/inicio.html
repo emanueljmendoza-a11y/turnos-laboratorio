@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="encabezado"><div><span class="sobretitulo">RESUMEN DE ACTIVIDAD</span><h1>Panel general</h1><p>Control integral del catálogo, los préstamos y las reservas.</p></div><a class="boton primario" href="{{ url_for('prestamo_nuevo') }}">＋ Nuevo préstamo</a></div>
+<div class="tarjetas-metricas">
+  <div class="metrica"><div class="icono-metrica violeta">▤</div><div class="metrica-label">Títulos registrados</div><div class="metrica-valor">{{ tablero.libros }}</div><div class="metrica-nota">{{ tablero.disponibles }} ejemplares disponibles</div></div>
+  <div class="metrica"><div class="icono-metrica azul">♙</div><div class="metrica-label">Usuarios</div><div class="metrica-valor">{{ tablero.usuarios }}</div><div class="metrica-nota">Lectores registrados</div></div>
+  <div class="metrica"><div class="icono-metrica verde">↗</div><div class="metrica-label">Préstamos activos</div><div class="metrica-valor">{{ tablero.activos }}</div><div class="metrica-nota">Actualmente en circulación</div></div>
+  <div class="metrica"><div class="icono-metrica naranja">◷</div><div class="metrica-label">Préstamos vencidos</div><div class="metrica-valor">{{ tablero.vencidos }}</div><div class="metrica-nota">{{ tablero.pendientes }} reservas pendientes</div></div>
+</div>
+<div class="columnas-dos">
+  <section class="panel"><div class="panel-cabeza"><div><h2>Préstamos recientes</h2><p>Últimos movimientos registrados</p></div><a class="enlace" href="{{ url_for('prestamos') }}">Ver todos</a></div>
+    {% if tablero.recientes %}<div class="tabla-scroll"><table><thead><tr><th>Libro</th><th>Usuario</th><th>Fecha</th><th>Estado</th></tr></thead><tbody>{% for p in tablero.recientes %}<tr><td><strong>{{ p.titulo }}</strong></td><td>{{ p.usuario }}</td><td>{{ p.prestado_en }}</td><td>{% if p.devuelto_en %}<span class="estado neutro">Devuelto</span>{% else %}<span class="estado exito">Activo</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="vacio">Todavía no hay préstamos registrados.</div>{% endif %}
+  </section>
+  <section class="panel"><div class="panel-cabeza"><div><h2>Atención prioritaria</h2><p>Ordenado con un montículo (heap)</p></div><span class="etiqueta">Urgentes primero</span></div>
+    {% if tablero.urgentes %}<div class="lista-alertas">{% for p in tablero.urgentes %}<div class="alerta-item"><span class="alerta-icono">!</span><div><strong>{{ p.titulo }}</strong><small>{{ p.usuario }} · Venció {{ p.vence_en }}</small></div><span class="estado peligro">{{ p.dias_atraso }} días</span></div>{% endfor %}</div>{% else %}<div class="vacio">✓ No existen préstamos vencidos.</div>{% endif %}
+  </section>
+</div>
+<div class="accion-informativa"><div><strong>¿Cómo funcionan las estructuras de datos?</strong><p>Consulta dónde intervienen las listas, el árbol BST, los grafos, los heaps y las complejidades Big O.</p></div><a class="boton secundario" href="{{ url_for('algoritmos') }}">Explorar algoritmos →</a></div>
+{% endblock %}

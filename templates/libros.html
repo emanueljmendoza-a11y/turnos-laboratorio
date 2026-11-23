@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="encabezado"><div><span class="sobretitulo">GESTIÓN DE COLECCIONES</span><h1>Catálogo de libros</h1><p>Busca por ISBN mediante un árbol binario balanceado o filtra por texto.</p></div><a class="boton primario" href="{{ url_for('libro_nuevo') }}">＋ Añadir libro</a></div>
+<section class="panel"><form class="filtros" method="get" action="{{ url_for('libros') }}"><label class="sr-only" for="q">Buscar libros</label><input id="q" type="search" name="q" value="{{ consulta }}" placeholder="Buscar título, autor o ISBN..."><label class="sr-only" for="categoria">Categoría</label><select id="categoria" name="categoria"><option value="">Todas las categorías</option>{% for c in categorias %}<option value="{{ c }}" {{ 'selected' if categoria == c else '' }}>{{ c }}</option>{% endfor %}</select><button class="boton primario" type="submit">Buscar</button>{% if consulta or categoria %}<a class="boton secundario" href="{{ url_for('libros') }}">Limpiar</a>{% endif %}</form>
+<div class="panel-cabeza compacta"><h2>{{ libros|length }} resultado(s)</h2><span class="texto-suave">Disponibilidad en tiempo real desde JSON</span></div>
+<div class="tabla-scroll"><table><thead><tr><th>Libro / Autor</th><th>ISBN</th><th>Categoría</th><th>Ejemplares</th><th>Disponibilidad</th><th></th></tr></thead><tbody>
+{% for libro in libros %}<tr><td><div class="libro-celda"><span class="mini-libro">▤</span><div><a class="titulo-tabla" href="{{ url_for('libro_detalle', libro_id=libro.id) }}">{{ libro.titulo }}</a><small>{{ libro.autor }}</small></div></div></td><td class="mono">{{ libro.isbn }}</td><td>{{ libro.categoria }}</td><td>{{ libro.ejemplares }}</td><td><span class="estado {{ 'exito' if libro.disponibles > 0 else 'peligro' }}">{{ libro.disponibles }} disponibles</span></td><td><a class="enlace" href="{{ url_for('libro_detalle', libro_id=libro.id) }}">Ver →</a></td></tr>
+{% else %}<tr><td colspan="6"><div class="vacio">No se encontraron libros con esos criterios.</div></td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

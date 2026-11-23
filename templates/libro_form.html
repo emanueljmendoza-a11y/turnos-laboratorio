@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="encabezado"><div><span class="sobretitulo">CATÁLOGO</span><h1>{{ titulo }}</h1><p>Completa los datos bibliográficos y la cantidad de ejemplares.</p></div><a class="boton secundario" href="{{ url_for('libros') }}">← Volver al catálogo</a></div>
+<section class="panel panel-formulario"><form method="post" action="{{ url_for('libro_editar', libro_id=libro.id) if libro else url_for('libro_nuevo') }}"><input type="hidden" name="_csrf" value="{{ token_csrf() }}"><div class="form-grid">
+<label class="campo campo-ancho">Título <input name="titulo" type="text" required maxlength="120" value="{{ libro.titulo if libro else '' }}" placeholder="Ej. El principito"></label>
+<label class="campo">Autor <input name="autor" type="text" required maxlength="120" value="{{ libro.autor if libro else '' }}" placeholder="Nombre del autor"></label>
+<label class="campo">ISBN <input name="isbn" type="text" required maxlength="20" value="{{ libro.isbn if libro else '' }}" placeholder="ISBN-10 o ISBN-13 válido"></label>
+<label class="campo">Categoría <input name="categoria" type="text" required maxlength="120" value="{{ libro.categoria if libro else '' }}" placeholder="Ej. Ciencia ficción"></label>
+<label class="campo">Año de publicación <input name="anio" type="number" required min="1" max="{{ max_anio }}" value="{{ libro.anio if libro else '' }}"></label>
+<label class="campo">Cantidad de ejemplares <input name="ejemplares" type="number" required min="0" max="10000" value="{{ libro.ejemplares if libro else '1' }}"></label>
+<label class="campo campo-ancho">Descripción <textarea name="descripcion" maxlength="800" rows="4" placeholder="Breve descripción del libro">{{ libro.descripcion if libro else '' }}</textarea></label>
+</div><div class="acciones-form"><a class="boton secundario" href="{{ url_for('libros') }}">Cancelar</a><button type="submit" class="boton primario">{{ 'Guardar cambios' if libro else 'Guardar libro' }}</button></div></form></section>
+{% endblock %}
